@@ -1,0 +1,9 @@
+---
+publish:
+  docker:
+    when:
+      branch: master
+    repo: cheine/shenkin
+    tag: latest
+    file: Dockerfile
+

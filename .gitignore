@@ -1,0 +1,7 @@
+
+logs/
+pids/
+
+*.swp
+*.tmp
+
