@@ -10,11 +10,24 @@ ENV export LC_TYPE=en_US.UTF-8
 
 RUN useradd -U --system -m -d /shinken shinken
 RUN apt-get update
+
+# Core dependencies
 RUN apt-get --yes install \
         lsb-release \
         wget \
+        sudo \
+        inotify-tools \
+        libssl-dev \
+        libsys-statistics-linux-perl \
+        libapache2-mod-proxy-html \
+        supervisor \
+        ntp
+
+ # Python
+RUN apt-get --yes install \
         python2.7 \
         python-setuptools \
+        python-pip \
         python-pycurl \
         python-cherrypy3 \
         python-pymongo \
@@ -22,15 +35,15 @@ RUN apt-get --yes install \
         python-arrow \
         python-openssl \
         python-bottle \
+        python-crypto
+
+# Pip
+RUN pip install docker-py nagiosplugin
+
+# Nagios plugins
+RUN apt-get --yes install \
         nagios-plugins \
-        libsys-statistics-linux-perl \
-        libapache2-mod-proxy-html \
-        supervisor \
-        libssl-dev \
-        python-crypto \
-        inotify-tools \
-        ntp \
-        sudo 
+        nagios-nrpe-plugin 
 
 RUN echo 'shinken ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
