@@ -9,7 +9,7 @@ ENV export LANG=en_US.UTF-8
 ENV export LC_TYPE=en_US.UTF-8
 
 RUN useradd -U --system -m -d /shinken shinken
-RUN apt-get --yes update
+RUN apt-get update
 RUN apt-get --yes install \
         lsb-release \
         wget \
@@ -20,6 +20,7 @@ RUN apt-get --yes install \
         python-pymongo \
         python-requests \
         python-arrow \
+        python-openssl \
         python-bottle \
         nagios-plugins \
         libsys-statistics-linux-perl \
