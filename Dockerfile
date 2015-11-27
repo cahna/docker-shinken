@@ -3,10 +3,10 @@ FROM ubuntu:15.04
 MAINTAINER Conor Heine <conor.heine@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV export LANGUAGE=en_US.UTF-8
-ENV export LC_ALL=en_US.UTF-8
-ENV export LANG=en_US.UTF-8
-ENV export LC_TYPE=en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_TYPE en_US.UTF-8
 
 RUN useradd -U --system -m -d /shinken shinken
 RUN apt-get update
