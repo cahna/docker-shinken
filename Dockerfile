@@ -9,6 +9,7 @@ ENV LANG en_US.UTF-8
 ENV LC_TYPE en_US.UTF-8
 
 RUN useradd -U --system -m -d /shinken shinken
+RUN usermod -a -G root shinken
 RUN apt-get update
 
 # Core dependencies
