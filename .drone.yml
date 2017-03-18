@@ -3,7 +3,7 @@ publish:
   docker:
     when:
       branch: master
-    repo: cheine/shenkin
+    repo: cahna/shenkin
     tag: latest
     file: Dockerfile
 

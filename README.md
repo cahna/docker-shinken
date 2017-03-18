@@ -8,7 +8,7 @@ Each of the Shinken daemons may be started using this Docker image.
 ---
 # Use a data container to easily share shinken configuration between containers
 shinken_data:
-  image: cheine/shinken
+  image: cahna/shinken
   entrypoint: /bin/true
   volumes:
     - ./etc:/etc/shinken:ro
@@ -17,35 +17,35 @@ shinken_data:
     - ./pids:/var/run/shinken
 
 shinken_scheduler:
-  image: cheine/shinken
+  image: cahna/shinken
   restart: always
   command: shinken-scheduler -c /etc/shinken/daemons/schedulerd.ini
   volumes_from:
     - shinken_data
 
 shinken_poller:
-  image: cheine/shinken
+  image: cahna/shinken
   restart: always
   command: shinken-poller -c /etc/shinken/daemons/pollerd.ini
   volumes_from:
     - shinken_data
 
 shinken_reactionner:
-  image: cheine/shinken
+  image: cahna/shinken
   restart: always
   command: shinken-reactionner -c /etc/shinken/daemons/reactionnerd.ini
   volumes_from:
     - shinken_data
 
 shinken_broker:
-  image: cheine/shinken
+  image: cahna/shinken
   restart: always
   command: shinken-broker -c /etc/shinken/daemons/brokerd.ini
   volumes_from:
     - shinken_data
 
 shinken_receiver:
-  image: cheine/shinken
+  image: cahna/shinken
   restart: always
   command: shinken-receiver -c /etc/shinken/daemons/receiverd.ini
   volumes_from:
@@ -59,7 +59,7 @@ shinken_receiver:
     - 127.0.0.1:7773:7773
 
 shinken_arbiter:
-  image: cheine/shinken
+  image: cahna/shinken
   hostname: shinken_arbiter
   restart: always
   command: shinken-arbiter -c /etc/shinken/shinken.cfg
@@ -75,4 +75,3 @@ shinken_arbiter:
     - 0.0.0.0:7799:7799
     - 0.0.0.0:7780:7780
 ```
-
