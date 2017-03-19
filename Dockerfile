@@ -42,14 +42,14 @@ RUN pip install docker-py nagiosplugin
 # Nagios plugins
 RUN apt-get --yes install nagios-plugins nagios-nrpe-plugin 
 
-#RUN useradd -U --system -m -d /shinken shinken
-#RUN usermod -a -G root shinken
-#RUN echo 'shinken ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN useradd -U --system -m -d /shinken shinken
+RUN echo 'shinken ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN wget -O /tmp/shinken.tgz https://github.com/naparuba/shinken/tarball/master
 RUN cd /tmp && tar zxvf shinken.tgz && cd nap* && python2.7 setup.py install
 RUN cd /tmp/nap* && contrib/install -a mongodb
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN mkdir -p /var/lib/shinken/config /var/lib/shinken/share/photos
+RUN chown -R shinken:shinken /var/lib/shinken /var/run/shinken /var/log/shinken /etc/shinken
 
 VOLUME /etc/shinken
 VOLUME /var/lib/shinken
